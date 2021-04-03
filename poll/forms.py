@@ -8,6 +8,8 @@ class PollForm(forms.ModelForm):
     
     class Meta:
         model = Poll
-        fields = ("question", "option1", "option2", "option3")
+        fields = ("question", "option1", "option2")
+
+
 
 

@@ -2,9 +2,12 @@ from django.shortcuts import render,redirect
 from .forms import PollForm
 from django.contrib.auth.decorators import login_required
 from .models import Poll
+from users.models import Profile
 from django.contrib import messages
 from django.http import  HttpResponseRedirect
 from django.urls import reverse
+import random
+
 
 
 @login_required
@@ -13,6 +16,9 @@ def CreatePoll(request):
         form = PollForm(request.POST)
         form.instance.creator = request.user
         if form.is_valid():
+            
+            bg_no = random.randint(1,15)
+            form.instance.image_bg =  "back"+str(bg_no)+".jpg"
             form.save()
             return redirect('poll-home')
     else:
@@ -38,8 +44,12 @@ def DetailedPoll(request, pk):
                 o2 = Poll.objects.filter(id=pk)[0].option2_count
                 o2=o2+1
                 Poll.objects.filter(id=pk).update(option2_count = o2)
-            poll_connected.votedBy.add(request.user)    
-            return redirect('create-poll')
+            poll_connected.votedBy.add(request.user) 
+            p_o1 = (Poll.objects.filter(id=pk)[0].option1_count/(Poll.objects.filter(id=pk)[0].option2_count+Poll.objects.filter(id=pk)[0].option1_count))*100
+            p_o2 = (Poll.objects.filter(id=pk)[0].option2_count/(Poll.objects.filter(id=pk)[0].option2_count+Poll.objects.filter(id=pk)[0].option1_count))*100
+            Poll.objects.filter(id=pk).update(percentage_o1 = p_o1)
+            Poll.objects.filter(id=pk).update(percentage_o2 = p_o2)
+            return redirect('detail-poll', pk=pk)
         
     else:   
         poll= Poll.objects.filter(id= pk)
@@ -52,6 +62,9 @@ def home(request):
     "polls": Poll.objects.all()
     }
     return render(request,'poll/home.html', context)
+
+
+
 
 
 # def votedBy(request, pk):

@@ -7,20 +7,17 @@ class Poll(models.Model):
     question = models.TextField()
     option1 = models.CharField(max_length=100)
     option2= models.CharField(max_length=100)
-    option3 = models.CharField(max_length=100, blank = True)
     option1_count = models.IntegerField(default = 0)
-    option2_count = models.IntegerField(default=0)
-    option3_count = models.IntegerField(default=0)
-    back_image = models.ImageField(default = 'default.jpg',upload_to='background_pics')
+    option2_count = models.IntegerField(default=0)    
     votedBy = models.ManyToManyField(User, related_name = "votedBy", blank=True)
+    percentage_o1 = models.FloatField(default = 0.0)
+    percentage_o2 = models.FloatField(default = 0.0)
+    image_bg = models.CharField(default="", max_length=100)
+    
 
     def save(self):
     	super().save()
-    	img = Image.open(self.back_image.path)
-    	if img.height>300 or img.width > 300:
-    		output_size=(300,300)
-    		img.thumbnail(output_size)
-    		img.save(self.back_image.path)
+    
 
     def __str__(self):
     	return self.question

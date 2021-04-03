@@ -21,6 +21,13 @@ body{
   left: 50%;
   transform: translate(-50%, -50%);
   overflow:;
+  font-size:20px;
+}
+.box:hover {
+  box-shadow: 0 0 500px rgba(33,33,33,.2); 
+}
+.box{
+	 transition: box-shadow .3s;
 }
 
 {% endblock %}
@@ -30,9 +37,9 @@ body{
  
 <!-- Header -->
 <header class="w3-container w3-red w3-center" style="padding:128px 16px">
-  <h1 class="w3-margin w3-jumbo">START PAGE</h1>
-  <p class="w3-xlarge">Template by w3.css</p>
-  <button class="w3-button w3-black w3-padding-large w3-large w3-margin-top">Get Started</button>
+  <h1 class="w3-margin w3-jumbo">Welcome to Pollify</h1>
+  <p class="w3-xlarge"></p>
+  <a class="w3-button w3-black w3-padding-large w3-large w3-margin-top" href="{% url 'create-poll' %}" >Get Started</a>
 </header>
 <!--     <section style="padding-top: 8px;">
         <div class="card" style=" background-color: black;">
@@ -110,14 +117,26 @@ body{
 
 
 <div class="w3-row" id="myGrid" style="margin-bottom:128px">
+<div class="w3-third">
+{% for poll in polls %}	
+	{% if forloop.counter|divisibleby:3 %}
+	{% elif forloop.counter|divisibleby:2 %}
+	{% else %}
+	  	<div class="container box " style="padding: 0px; position: relative;">
+	  		<img src="/media/background_pics/{{ poll.image_bg }}" style="width:100%; border-style: solid;">	
+	  		<div class="centered" style="color:black;"><a style="text-decoration: none;" href="{{ poll.id }}/">{{ poll.question }} </a></div>
+	  	</div>
+  	{% endif %}
+{% endfor %}   
+</div>
 
 
 <div class="w3-third">
 {% for poll in polls %}	
 	{% if forloop.counter|divisibleby:3 %}
-		<div class="container" style="padding: 0px; position: relative;">
-  			<img src="/media/{{ poll.back_image }}" style="width:100%">	
-  			<div class="centered" style="color:black;"><a href="{{ poll.id }}/">{{ poll.question }}</a></div>
+		<div class="container box" style="padding: 0px; position: relative;">
+  			<img src="/media/background_pics/{{ poll.image_bg }}" style="width:100%; border-style: solid;">	
+  			<div class="centered" style="color:black;"><a style="text-decoration: none;" href="{{ poll.id }}/">{{ poll.question }}</a></div>
   		</div>
   	{% endif %}
 {% endfor %} 
@@ -128,32 +147,13 @@ body{
 	{% if forloop.counter|divisibleby:3 %}
 	<div></div>
 	{% elif forloop.counter|divisibleby:2 %}
-  		<div class="container" style="padding: 0px; position: relative;">
-  			<img src="/media/{{ poll.back_image }}" style="width:100%">	
-  			<div class="centered" style="color:black;"><a href="{{ poll.id }}/">{{ poll.question }} </a></div>
+  		<div class="container box" style="padding: 0px; position: relative;">
+  			<img src="/media/background_pics/{{ poll.image_bg }}" style="width:100%; border-style: solid;">	
+  			<div class="centered" style="color:black;"><a style="text-decoration: none;" href="{{ poll.id }}/">{{ poll.question }} </a></div>
   		</div>
   	{% endif %}	
 {% endfor %}   
 </div>
-
-<div class="w3-third">
-{% for poll in polls %}	
-	{% if forloop.counter|divisibleby:3 %}
-	{% elif forloop.counter|divisibleby:2 %}
-	{% else %}
-	  	<div class="container" style="padding: 0px; position: relative;">
-	  		<img src="/media/{{ poll.back_image }}" style="width:100%">	
-	  		<div class="centered" style="color:black;"><a href="{{ poll.id }}/">{{ poll.question }} </a></div>
-	  	</div>
-  	{% endif %}
-{% endfor %}   
-</div>
-
-
-
-
-
-
 </div>
 
 
