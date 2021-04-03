@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from poll.models import Poll
 
 def register(request):
     if request.method == 'POST':
@@ -38,9 +39,11 @@ def profile(request):
         u_form = UserUpdateForm(instance=request.user)
        	p_form = ProfileUpdateForm(instance=request.user.profile)
 
+    polls = Poll.objects.filter(creator = request.user)    
     context = {
         'u_form': u_form,
-       	'p_form': p_form
+       	'p_form': p_form,
+        'polls':polls
     }
 
     return render(request, 'users/profile.html', context)

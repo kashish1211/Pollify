@@ -10,3 +10,4 @@ class PollForm(forms.ModelForm):
         model = Poll
         fields = ("question", "option1", "option2", "option3")
 
+

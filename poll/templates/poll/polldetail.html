@@ -1,0 +1,101 @@
+{% extends 'poll/base.html'%}
+{% load static %}
+{% load crispy_forms_tags%}
+
+
+{% block links %}
+
+
+
+  <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+  
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+
+{% endblock links %}
+
+{% block style %}
+
+a.list-group-item {
+    height:auto;
+    min-height:220px;
+}
+a.list-group-item.active small {
+    color:#fff;
+}
+a.list-group-item  .vs-title {
+    font-size: 110px; 
+    box-shadow: 0 1px 1px rgba(0,0,0,.5)
+}
+.fa { font-size: 200px;color:#FFFFFF;}
+.social a { text-decoration:none; }
+.twitter { background-color:#00acee; border-radius:4px;box-shadow: 0 5px 15px rgba(0,0,0,.5)}
+.facebook-like { background-color:#3b5998;border-radius:4px;margin-top:-3px;box-shadow: 0 5px 15px rgba(0,0,0,.5)}
+
+
+{% endblock style %}
+
+
+
+
+
+{% block content %}
+
+<br><br>
+
+
+        <div class="container bootstrap snippets bootdey" style="">
+            <div class="row justify-content-center" style="">
+                <div class="well">
+                <h3 class="text-center text-primary">
+            
+                 <b> {{ poll.question }} </b>
+                </h3>
+                <form method="POST" action="">
+                    {% csrf_token %}
+            <div class="list-group">
+              <a href="#" class="list-group-item">
+                    <div class="col-md-3">
+                         <div class="col-md-12">
+                            <div class="twitter" style="height: 150px; width: 150px; position: relative;">
+                               <span style="font-size:42px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"> {{ poll.option1 }} </span> 
+                            </div>
+                        </div>
+                        <div class="media col-md-12">
+                            <button type="submit" name="option1" class="btn btn-default btn-lg btn-block"> Vote</button>
+                        </div>  
+                    </div>
+     
+                    <div class="col-md-6 text-center">
+                        <h1 class="vs-title">Vs</h1>
+                    </div>
+                    <div class="col-md-3">
+                         <div class="col-md-12">
+                            <div class="twitter" style="height: 150px; width: 150px; position: relative; ">
+                               <span style="font-size:42px; position: relative; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"> {{ poll.option2 }} </span> 
+                            </div>
+                        </div>
+                        <div class="media col-md-12">
+                            <button type="submit" name="option2" class="btn btn-default btn-lg btn-block"> Vote</button>
+                        </div>  
+                    </div>
+              </a>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>
+
+    
+
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+{% endblock content %}
+
+<!-- <form method="POST" action="">
+    {% csrf_token %}
+    <label>{{ poll.question }}</label>
+    <button type="submit" name="option1">{{ poll.option1 }}</button>
+    <button type="submit" name="option2">{{ poll.option2 }}</button>
+
+</form> -->
