@@ -29,6 +29,37 @@ body{
 .box{
 	 transition: box-shadow .3s;
 }
+@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
+
+.animate {
+  border-right: solid 3px rgba(0,255,0,.75);
+  white-space: nowrap;
+  overflow: hidden;    
+  font-family: 'Source Code Pro', monospace;  
+  font-size: 50px;
+  color: rgba(255,255,255,.70);
+  margin: 0 auto;
+}
+
+/* Animation */
+.animate {
+  animation: animated-text 4s steps(25,end) 1s 1 normal both,
+             animated-cursor 600ms steps(25,end) infinite;
+}
+
+/* text animation */
+
+@keyframes animated-text{
+  from{width: 0;}
+  to{width: 900px;}
+}
+
+/* cursor animations */
+
+@keyframes animated-cursor{
+  from{border-right-color: rgba(0,255,0,.75);}
+  to{border-right-color: transparent;}
+}
 
 {% endblock %}
 
@@ -37,83 +68,11 @@ body{
  
 <!-- Header -->
 <header class="w3-container w3-red w3-center" style="padding:128px 16px">
-  <h1 class="w3-margin w3-jumbo">Welcome to Pollify</h1>
+  <h1 class="w3-margin w3-jumbo "><p class="animate">Pollify - Get an honest opinion</p></h1>
   <p class="w3-xlarge"></p>
   <a class="w3-button w3-black w3-padding-large w3-large w3-margin-top" href="{% url 'create-poll' %}" >Get Started</a>
 </header>
-<!--     <section style="padding-top: 8px;">
-        <div class="card" style=" background-color: black;">
-    
 
-<div class="row" style="background-color: black;">
-
-    <div class="col-lg-4 col-md-12 mb-2 mb-lg-0">
-    	<div class="imageContainer" style="padding: 0px;">
-      		<img
-      		src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSET4OYj_LfpKLlasfQQ86RkAdwxEWHgkBF8Q&usqp=CAU"
-      		class="w-100 shadow-1-strong rounded mb-4"
-      		alt=""/>
-  			<div class="centered" style="color:black;">Centered1</div>
-		</div>
-    
-		<div class="imageContainer">
-   				<img
-      				src="https://img.freepik.com/free-photo/color-concrete-wall-background_1323-256.jpg?size=626&ext=jpg"
-      				class="w-100 shadow-1-strong rounded mb-4"
-      				alt=""
-    				/>
-	       		<div class="centered" style="color: black;">Centered2</div>
-    	</div>
-	</div>
-    
-  <div class="col-lg-4 mb-2 mb-lg-0">
-    <div class="imageContainer">
-    <img
-      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9bHkBxf0d0XVrbe-pxj9J8YVUG72m14zSrA&usqp=CAU"
-      class="w-100 shadow-1-strong rounded mb-4"
-      alt=""
-    />
-    <div class="centered" style="color: black;">Centered3</div>
-    </div>
-      
-    <div class="imageContainer">
-    
-    <img
-      src="https://cdn.hipwallpaper.com/i/53/3/A9kfOd.jpg"
-      class="w-100 shadow-1-strong rounded mb-4"
-      alt=""
-    />
-       <div class="centered" style="color:black;" >Centered4</div>
-        
-  </div>
-</div>
-    
-    
-  <div class="col-lg-4 mb-2 mb-lg-0">
-    <div class="imageContainer">
-      <img
-      src="https://us.123rf.com/450wm/golubovy/golubovy1905/golubovy190500706/123868293-vibrant-pink-solid-color-background-plain-magenta-surface-modern-painting-creativity-and-art-bright-.jpg?ver=6"
-      class="w-100 shadow-1-strong rounded mb-4"
-      alt=""
-    />
-       <div class="centered" style="color: black;">Centered5</div>
-</div>
-      
-    <div class="imageContainer">
-    <img
-      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCzuCTe_hG9dsrVzlw6uLUXle7QPbfIbtJgQ&usqp=CAU"
-      class="w-100 shadow-1-strong rounded mb-4"
-      alt=""
-    />
-       <div class="centered" style="color:black;">Centered6</div>
-  </div>
-</div>
-</div>
-
-
-</div>
-
-    </section> -->
 
 
 <div class="w3-row" id="myGrid" style="margin-bottom:128px">

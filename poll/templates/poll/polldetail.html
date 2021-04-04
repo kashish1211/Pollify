@@ -172,16 +172,19 @@
 	 background-color: rgba(129, 191, 67, .5);
 }
  label.voted.option-02::after {
-	 background-color: rgba(191, 88, 67, .5);
+	 background-color: black;
 }
  label.voted::before, label.voted:hover::before {
 	 background-color: rgba(0, 0, 0, .8);
 }
  .option-01 {
-	 background-image: url('https://source.unsplash.com/1600x900/?sky');
+
+ background: url('../static/poll/bg1.jpg');
+ background-color: black;
 }
  .option-02 {
-	 background-image: url('https://i.imgur.com/DLbK6nG.jpg');
+	 background: url('../static/poll/bg2.jpg');
+	 background-color: black;
 }
  
 
@@ -195,7 +198,11 @@
 {% block content %}
 
 <br><br>
-<div class="result" >
+
+
+
+
+<div class="result" style="">
 <form method="POST" action="" class="result">
     {% csrf_token %}
 

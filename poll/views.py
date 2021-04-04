@@ -39,11 +39,13 @@ def DetailedPoll(request, pk):
                 o1 = Poll.objects.filter(id=pk)[0].option1_count
                 o1=o1+1
                 Poll.objects.filter(id=pk).update(option1_count = o1)
+
             else:
                 print("option 2")
                 o2 = Poll.objects.filter(id=pk)[0].option2_count
                 o2=o2+1
                 Poll.objects.filter(id=pk).update(option2_count = o2)
+            messages.error(request, "Thank you for voting. Your opinion matter!")
             poll_connected.votedBy.add(request.user) 
             p_o1 = (Poll.objects.filter(id=pk)[0].option1_count/(Poll.objects.filter(id=pk)[0].option2_count+Poll.objects.filter(id=pk)[0].option1_count))*100
             p_o2 = (Poll.objects.filter(id=pk)[0].option2_count/(Poll.objects.filter(id=pk)[0].option2_count+Poll.objects.filter(id=pk)[0].option1_count))*100
